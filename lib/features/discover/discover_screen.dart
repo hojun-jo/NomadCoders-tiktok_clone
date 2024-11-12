@@ -13,18 +13,125 @@ final tabs = [
   "Brands",
 ];
 
-class DiscoverScreen extends StatelessWidget {
+class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
+
+  @override
+  State<DiscoverScreen> createState() => _DiscoverScreenState();
+}
+
+class _DiscoverScreenState extends State<DiscoverScreen> {
+  final TextEditingController _textEditingController = TextEditingController();
+
+  bool _isWriting = false;
+
+  void _onSearchChanged(String value) {}
+
+  void _onSearchSubmitted(String value) {}
+
+  void _tabPressed(int index) {
+    FocusScope.of(context).unfocus();
+  }
+
+  void _onClearTap() {
+    _textEditingController.clear();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController.addListener(() {
+      if (_textEditingController.text.isEmpty) {
+        _isWriting = false;
+      }
+      if (_isWriting == false && _textEditingController.text.isNotEmpty) {
+        _isWriting = true;
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           elevation: 1,
-          title: const Text("Discover"),
+          title: Row(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(
+                  right: Sizes.size14,
+                ),
+                child: FaIcon(FontAwesomeIcons.chevronLeft),
+              ),
+              Expanded(
+                child: TextField(
+                  controller: _textEditingController,
+                  cursorColor: Theme.of(context).primaryColor,
+                  decoration: InputDecoration(
+                    hintText: "Search",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(
+                        Sizes.size5,
+                      ),
+                      borderSide: BorderSide.none,
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey.shade200,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: Sizes.size10,
+                    ),
+                    prefixIcon: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.magnifyingGlass,
+                          size: Sizes.size20,
+                        ),
+                      ],
+                    ),
+                    prefixIconColor: Colors.grey.shade800,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(
+                        right: Sizes.size14,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (_isWriting)
+                            GestureDetector(
+                              onTap: _onClearTap,
+                              child: FaIcon(
+                                FontAwesomeIcons.solidCircleXmark,
+                                color: Colors.grey.shade500,
+                                size: Sizes.size20,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: Sizes.size14,
+                ),
+                child: FaIcon(FontAwesomeIcons.sliders),
+              ),
+            ],
+          ),
           bottom: TabBar(
+            onTap: _tabPressed,
             splashFactory: NoSplash.splashFactory,
             padding: const EdgeInsets.symmetric(
               horizontal: Sizes.size16,
@@ -48,6 +155,7 @@ class DiscoverScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             GridView.builder(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               itemCount: 20,
               padding: const EdgeInsets.all(
                 Sizes.size6,
@@ -60,13 +168,19 @@ class DiscoverScreen extends StatelessWidget {
               ),
               itemBuilder: (context, index) => Column(
                 children: [
-                  AspectRatio(
-                    aspectRatio: 9 / 16,
-                    child: FadeInImage.assetNetwork(
-                      fit: BoxFit.cover,
-                      placeholder: "assets/images/placeholder.jpg",
-                      image:
-                          "https://images.unsplash.com/photo-1729508895264-d61e3f6587fa?q=80&w=3119&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  Container(
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Sizes.size4),
+                    ),
+                    child: AspectRatio(
+                      aspectRatio: 9 / 16,
+                      child: FadeInImage.assetNetwork(
+                        fit: BoxFit.cover,
+                        placeholder: "assets/images/placeholder.jpg",
+                        image:
+                            "https://images.unsplash.com/photo-1729508895264-d61e3f6587fa?q=80&w=3119&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                      ),
                     ),
                   ),
                   Gaps.v10,
