@@ -168,7 +168,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   mainAxisSpacing: Sizes.size2,
                   childAspectRatio: 9 / 14,
                 ),
-                itemBuilder: (context, index) => Column(
+                itemBuilder: (context, index) => Stack(
                   children: [
                     AspectRatio(
                       aspectRatio: 9 / 14,
@@ -179,6 +179,27 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             "https://images.unsplash.com/photo-1729508895264-d61e3f6587fa?q=80&w=3119&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                       ),
                     ),
+                    const Positioned(
+                      bottom: Sizes.size6,
+                      left: Sizes.size10,
+                      child: Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.play,
+                            color: Colors.white,
+                            size: Sizes.size16,
+                          ),
+                          Gaps.h10,
+                          Text(
+                            "11M",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
