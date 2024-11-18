@@ -31,6 +31,7 @@ class _VideoPostState extends State<VideoPost>
   late final AnimationController _animationController;
 
   bool _isPaused = false;
+  bool _isMuted = false;
 
   void _onVideoChange() {
     if (_videoPlayerController.value.isInitialized) {
@@ -47,7 +48,7 @@ class _VideoPostState extends State<VideoPost>
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
     if (kIsWeb) {
-      await _videoPlayerController.setVolume(0);
+      _mute();
     }
     _videoPlayerController.addListener(_onVideoChange);
     setState(() {});
@@ -109,6 +110,26 @@ class _VideoPostState extends State<VideoPost>
       builder: (context) => const VideoComments(),
     );
     _onTogglePause();
+  }
+
+  void _onToggleMute() async {
+    if (_isMuted) {
+      _unmute();
+    } else {
+      _mute();
+    }
+  }
+
+  void _mute() async {
+    await _videoPlayerController.setVolume(0);
+    _isMuted = true;
+    setState(() {});
+  }
+
+  void _unmute() async {
+    await _videoPlayerController.setVolume(100);
+    _isMuted = false;
+    setState(() {});
   }
 
   @override
@@ -177,6 +198,20 @@ class _VideoPostState extends State<VideoPost>
                   ),
                 ),
               ],
+            ),
+          ),
+          Positioned(
+            top: 10,
+            right: 10,
+            child: IconButton(
+              onPressed: _onToggleMute,
+              icon: FaIcon(
+                _isMuted
+                    ? FontAwesomeIcons.volumeXmark
+                    : FontAwesomeIcons.volumeHigh,
+                color: Colors.white,
+                size: Sizes.size20,
+              ),
             ),
           ),
           Positioned(
