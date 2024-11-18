@@ -28,9 +28,14 @@ class TikTokApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
+      themeMode: ThemeMode.system,
       theme: ThemeData(
+        brightness: Brightness.light,
         useMaterial3: false,
         scaffoldBackgroundColor: Colors.white,
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade50,
+        ),
         primaryColor: const Color(0xffe9435a),
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xffe9435a),
@@ -47,7 +52,15 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MainNavigationScreen(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade900,
+        ),
+        primaryColor: const Color(0xffe9435a),
+      ),
+      home: const SignUpScreen(),
     );
   }
 }
