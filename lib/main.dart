@@ -34,7 +34,7 @@ class TikTokApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         textTheme: Typography.blackMountainView,
-        useMaterial3: false,
+        useMaterial3: true,
         scaffoldBackgroundColor: Colors.white,
         bottomAppBarTheme: BottomAppBarTheme(
           color: Colors.grey.shade50,
@@ -47,6 +47,7 @@ class TikTokApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           foregroundColor: Colors.black,
           backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           elevation: 0,
           titleTextStyle: TextStyle(
             color: Colors.black,
@@ -66,10 +67,22 @@ class TikTokApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         textTheme: Typography.whiteMountainView,
-        useMaterial3: false,
+        useMaterial3: true,
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(
-          color: Colors.grey.shade900,
+          backgroundColor: Colors.grey.shade900,
+          surfaceTintColor: Colors.grey.shade900,
+          titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
+          ),
+          actionsIconTheme: IconThemeData(
+            color: Colors.grey.shade100,
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.grey.shade100,
+          ),
         ),
         bottomAppBarTheme: BottomAppBarTheme(
           color: Colors.grey.shade900,
@@ -78,8 +91,10 @@ class TikTokApp extends StatelessWidget {
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xffe9435a),
         ),
-        tabBarTheme: const TabBarTheme(
+        tabBarTheme: TabBarTheme(
           indicatorColor: Colors.white,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.grey.shade700,
         ),
       ),
       home: const MainNavigationScreen(),
