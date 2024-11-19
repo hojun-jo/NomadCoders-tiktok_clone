@@ -32,36 +32,37 @@ class TikTokApp extends StatelessWidget {
       title: 'TikTok Clone',
       themeMode: ThemeMode.system,
       theme: ThemeData(
-          brightness: Brightness.light,
-          textTheme: Typography.blackMountainView,
-          useMaterial3: false,
-          scaffoldBackgroundColor: Colors.white,
-          bottomAppBarTheme: BottomAppBarTheme(
-            color: Colors.grey.shade50,
+        brightness: Brightness.light,
+        textTheme: Typography.blackMountainView,
+        useMaterial3: false,
+        scaffoldBackgroundColor: Colors.white,
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade50,
+        ),
+        primaryColor: const Color(0xffe9435a),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xffe9435a),
+        ),
+        splashColor: Colors.transparent,
+        appBarTheme: const AppBarTheme(
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
           ),
-          primaryColor: const Color(0xffe9435a),
-          textSelectionTheme: const TextSelectionThemeData(
-            cursorColor: Color(0xffe9435a),
-          ),
-          splashColor: Colors.transparent,
-          appBarTheme: const AppBarTheme(
-            foregroundColor: Colors.black,
-            backgroundColor: Colors.white,
-            elevation: 0,
-            titleTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: Sizes.size16 + Sizes.size2,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          tabBarTheme: TabBarTheme(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade500,
-            indicatorColor: Colors.black,
-          ),
-          listTileTheme: const ListTileThemeData(
-            iconColor: Colors.black,
-          )),
+        ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.black,
+        ),
+        listTileTheme: const ListTileThemeData(
+          iconColor: Colors.black,
+        ),
+      ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         textTheme: Typography.whiteMountainView,
