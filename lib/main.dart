@@ -54,6 +54,11 @@ class TikTokApp extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
+        tabBarTheme: TabBarTheme(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade500,
+          indicatorColor: Colors.black,
+        ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
@@ -67,8 +72,14 @@ class TikTokApp extends StatelessWidget {
           color: Colors.grey.shade900,
         ),
         primaryColor: const Color(0xffe9435a),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color(0xffe9435a),
+        ),
+        tabBarTheme: const TabBarTheme(
+          indicatorColor: Colors.white,
+        ),
       ),
-      home: const InterestsScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }
