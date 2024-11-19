@@ -56,15 +56,13 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              FaIcon(
+              Icon(
                 FontAwesomeIcons.flag,
-                color: Colors.black,
                 size: Sizes.size20,
               ),
               Gaps.h32,
-              FaIcon(
+              Icon(
                 FontAwesomeIcons.ellipsis,
-                color: Colors.black,
                 size: Sizes.size20,
               ),
             ],
