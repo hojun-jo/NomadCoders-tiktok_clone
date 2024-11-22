@@ -109,7 +109,7 @@ class TikTokApp extends StatelessWidget {
           unselectedLabelColor: Colors.grey.shade700,
         ),
       ),
-      home: const MainNavigationScreen(),
+      home: const SignUpScreen(),
     );
   }
 }
