@@ -111,36 +111,32 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
                           icon: const Icon(Icons.cameraswitch),
                         ),
                         Gaps.v10,
-                        IconButton(
-                          color: _flashMode == FlashMode.off
-                              ? Colors.amber.shade200
-                              : Colors.white,
-                          onPressed: () => _setFlashMode(FlashMode.off),
+                        FlashModeButton(
+                          selectedMode: _flashMode,
+                          mode: FlashMode.off,
                           icon: const Icon(Icons.flash_off_rounded),
+                          onPressed: () => _setFlashMode(FlashMode.off),
                         ),
                         Gaps.v10,
-                        IconButton(
-                          color: _flashMode == FlashMode.always
-                              ? Colors.amber.shade200
-                              : Colors.white,
-                          onPressed: () => _setFlashMode(FlashMode.always),
+                        FlashModeButton(
+                          selectedMode: _flashMode,
+                          mode: FlashMode.always,
                           icon: const Icon(Icons.flash_on_rounded),
+                          onPressed: () => _setFlashMode(FlashMode.always),
                         ),
                         Gaps.v10,
-                        IconButton(
-                          color: _flashMode == FlashMode.auto
-                              ? Colors.amber.shade200
-                              : Colors.white,
-                          onPressed: () => _setFlashMode(FlashMode.auto),
+                        FlashModeButton(
+                          selectedMode: _flashMode,
+                          mode: FlashMode.auto,
                           icon: const Icon(Icons.flash_auto_rounded),
+                          onPressed: () => _setFlashMode(FlashMode.auto),
                         ),
                         Gaps.v10,
-                        IconButton(
-                          color: _flashMode == FlashMode.torch
-                              ? Colors.amber.shade200
-                              : Colors.white,
-                          onPressed: () => _setFlashMode(FlashMode.torch),
+                        FlashModeButton(
+                          selectedMode: _flashMode,
+                          mode: FlashMode.torch,
                           icon: const Icon(Icons.flashlight_on_rounded),
+                          onPressed: () => _setFlashMode(FlashMode.torch),
                         ),
                       ],
                     ),
@@ -148,6 +144,30 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen> {
                 ],
               ),
       ),
+    );
+  }
+}
+
+class FlashModeButton extends StatelessWidget {
+  final FlashMode selectedMode;
+  final FlashMode mode;
+  final Icon icon;
+  final VoidCallback onPressed;
+
+  const FlashModeButton({
+    super.key,
+    required this.selectedMode,
+    required this.mode,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      color: selectedMode == mode ? Colors.amber.shade200 : Colors.white,
+      onPressed: onPressed,
+      icon: icon,
     );
   }
 }
