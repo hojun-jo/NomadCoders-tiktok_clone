@@ -6,6 +6,8 @@
 	<string>Need Permissions for take video!</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Need Permissions for take video!</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need Permissions for save video!</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
