@@ -37,7 +37,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   late int _selectedIndex = _tabs.indexOf(widget.tab);
 
   void _onTap(int index) {
-    context.go("\${_tabs[index]}");
+    context.go("/${_tabs[index]}");
     setState(() {
       _selectedIndex = index;
     });

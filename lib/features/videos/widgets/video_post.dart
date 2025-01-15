@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
@@ -32,7 +32,7 @@ class _VideoPostState extends State<VideoPost>
   late final AnimationController _animationController;
 
   bool _isPaused = false;
-  bool _isMuted = false;
+  bool _autoMute = videoConfig.autoMute;
 
   void _onVideoChange() {
     if (_videoPlayerController.value.isInitialized) {
@@ -48,9 +48,7 @@ class _VideoPostState extends State<VideoPost>
         VideoPlayerController.asset("assets/videos/video.mp4");
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
-    if (kIsWeb) {
-      _mute();
-    }
+
     _videoPlayerController.addListener(_onVideoChange);
     setState(() {});
   }
@@ -67,6 +65,12 @@ class _VideoPostState extends State<VideoPost>
       value: 1.5,
       duration: _animationDuration,
     );
+
+    videoConfig.addListener(() {
+      setState(() {
+        _autoMute = videoConfig.autoMute;
+      });
+    });
   }
 
   @override
@@ -111,26 +115,6 @@ class _VideoPostState extends State<VideoPost>
       builder: (context) => const VideoComments(),
     );
     _onTogglePause();
-  }
-
-  void _onToggleMute() async {
-    if (_isMuted) {
-      _unmute();
-    } else {
-      _mute();
-    }
-  }
-
-  void _mute() async {
-    await _videoPlayerController.setVolume(0);
-    _isMuted = true;
-    setState(() {});
-  }
-
-  void _unmute() async {
-    await _videoPlayerController.setVolume(100);
-    _isMuted = false;
-    setState(() {});
   }
 
   @override
@@ -202,12 +186,12 @@ class _VideoPostState extends State<VideoPost>
             ),
           ),
           Positioned(
-            top: 10,
+            top: 40,
             right: 10,
             child: IconButton(
-              onPressed: _onToggleMute,
+              onPressed: videoConfig.toggleAutoMute,
               icon: FaIcon(
-                _isMuted
+                _autoMute
                     ? FontAwesomeIcons.volumeXmark
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
