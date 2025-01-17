@@ -12,6 +12,7 @@ import 'package:tiktok_clone/features/onboarding/interests_screen.dart';
 import 'package:tiktok_clone/features/videos/views/video_recording_screen.dart';
 
 final routerProvider = Provider((ref) {
+  // ref.watch(authState); // authState 변경시 라우터가 자동으로 업데이트 됨
   return GoRouter(
     initialLocation: "/inbox",
     redirect: (context, state) {
