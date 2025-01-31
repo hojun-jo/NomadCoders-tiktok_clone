@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +26,7 @@ class SignUpViewModel extends AsyncNotifier {
         form["email"],
         form["password"],
       );
-      await users.createAccount(userCredential);
+      await users.createProfile(userCredential);
     });
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
