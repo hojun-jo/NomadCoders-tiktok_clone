@@ -6,9 +6,9 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/settings/settings_screen.dart';
 import 'package:tiktok_clone/features/users/view_models/users_view_model.dart';
-import 'package:tiktok_clone/features/users/widgets/avatar.dart';
-import 'package:tiktok_clone/features/users/widgets/persistent_tab_bar.dart';
-import 'package:tiktok_clone/features/users/widgets/stats_column.dart';
+import 'package:tiktok_clone/features/users/views/widgets/avatar.dart';
+import 'package:tiktok_clone/features/users/views/widgets/persistent_tab_bar.dart';
+import 'package:tiktok_clone/features/users/views/widgets/stats_column.dart';
 
 class UserProfileScreen extends ConsumerStatefulWidget {
   final String username;
