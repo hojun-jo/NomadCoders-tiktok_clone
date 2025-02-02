@@ -55,6 +55,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                       SliverAppBar(
                         title: Text(data.name),
                         actions: [
+                          // TODO: bio, link 수정할 수 있는 화면
                           IconButton(
                             onPressed: _onGearPressed,
                             icon: const FaIcon(
